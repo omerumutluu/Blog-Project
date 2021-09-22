@@ -8,31 +8,7 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Repositories
 {
-    public class CommentRepository : IGenericDal<Comment>
+    public class CommentRepository : GenericRepository<Comment>
     {
-        public void Delete(Comment entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Comment GetByID(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Comment> GetListAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Insert(Comment entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Update(Comment entity)
-        {
-            throw new NotImplementedException();
-        }
     }
 }
