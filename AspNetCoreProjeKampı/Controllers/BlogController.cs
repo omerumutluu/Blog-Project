@@ -13,7 +13,13 @@ namespace AspNetCoreProjeKampı.Controllers
         BlogManager blogManager = new BlogManager(new EfBlogRepository());
         public IActionResult Index()
         {
-            var values = blogManager.GetAll();
+            var values = blogManager.GetAllWithCategory();
+            return View(values);
+        }
+
+        public IActionResult BlogReadAll(int id)
+        {
+            var values = blogManager.GetById(id);
             return View(values);
         }
     }

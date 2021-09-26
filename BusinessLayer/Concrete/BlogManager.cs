@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Concrete
 {
-    public class BlogManager : IBlogService
+    public class BlogManager : IBlogService 
     {
         IBlogDal _blogDal;
 
@@ -33,9 +33,19 @@ namespace BusinessLayer.Concrete
             return _blogDal.GetAll();
         }
 
+        public List<Blog> GetAllWithCategory()
+        {
+            return _blogDal.GetAllWithCategory();
+        }
+
         public Blog GetById(int id)
         {
             return _blogDal.GetById(id);
+        }
+
+        public List<Blog> GetBlogById(int id)
+        {
+            return _blogDal.GetAllWithFilter(b => b.BlogId == id);
         }
 
         public void Update(Blog blog)
