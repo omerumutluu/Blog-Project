@@ -2,18 +2,23 @@
 
 <div class="comment-top">
     <h4>Yorumlar</h4>
-    @foreach (var item in Model)
+    @if (Model == null)
     {
-        <div class="media">
+        @foreach (var item in Model)
+        {
+            <div class="media">
             <img src="~/CoreBlogTema/images/t1.jpg" alt="" class="img-fluid" />
             <div class="media-body">
                 <h5 class="mt-0">@item.CommentUserName</h5>
                 <p>
                     @item.CommentContent
                 </p>
-
-                
             </div>
         </div>
+        } 
+    }
+    else
+    {
+        <h5>Bu blogla ilgili yorum bulunmamaktadır.</h5>
     }
 </div>
