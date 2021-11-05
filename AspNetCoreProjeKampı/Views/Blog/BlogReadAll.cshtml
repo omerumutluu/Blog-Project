@@ -1,9 +1,7 @@
 ﻿@model EntityLayer.Concrete.Blog
 
-@{
-    ViewData["Title"] = "BlogReadAll";
-    Layout = "~/Views/Shared/UserLayout.cshtml";
-}
+@{ ViewData["Title"] = "BlogReadAll";
+    Layout = "~/Views/Shared/UserLayout.cshtml"; }
 
 <!DOCTYPE html>
 <html lang="zxx">
@@ -56,13 +54,13 @@
                         <a href="/Blog/Index" class="btn btn-primary read-m">Blog Listesi</a>
                     </div>
 
-                    @await Component.InvokeAsync("CommentListByBlog", new { id = ViewBag.i})
+                    @await Component.InvokeAsync("CommentListByBlog", new { id = ViewBag.i })
 
                     @*await Html.PartialAsync("~/Views/Comment/CommentListByBlog.cshtml") *@
 
-                    @await Html.PartialAsync("~/Views/Comment/PartialAddComment.cshtml") 
+                    @await Html.PartialAsync("~/Views/Comment/PartialAddComment.cshtml")
 
-                    
+
                 </div>
 
                 <!--//left-->
@@ -72,8 +70,12 @@
                         <div class="tech-btm">
                             <img src="~/CoreBlogTema/images/banner1.jpg" class="img-fluid" alt="">
                         </div>
-                        @await Html.PartialAsync("~/Views/NewsLetter/SubscribeMail.cshtml")
-                        
+
+                        <div class="tech-btm">
+                            <h4>Mail bültenimize abone olun</h4>
+                            @await Html.PartialAsync("~/Views/NewsLetter/SubscribeMail.cshtml")
+                        </div>
+
                         @await Component.InvokeAsync("CategoryList")
 
                         @await Component.InvokeAsync("BlogListByWriter")

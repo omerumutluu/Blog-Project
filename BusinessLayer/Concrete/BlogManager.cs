@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace BusinessLayer.Concrete
 {
-    public class BlogManager : IBlogService 
+    public class BlogManager : IBlogService
     {
         IBlogDal _blogDal;
 
@@ -18,19 +18,24 @@ namespace BusinessLayer.Concrete
             _blogDal = blogDal;
         }
 
-        public void Add(Blog blog)
+        public void Add(Blog entity)
         {
-            _blogDal.Add(blog);
+            _blogDal.Add(entity);
         }
 
-        public void Delete(Blog blog)
+        public void Delete(Blog entity)
         {
-            _blogDal.Delete(blog);
+            _blogDal.Delete(entity);
         }
 
         public List<Blog> GetAll()
         {
             return _blogDal.GetAll();
+        }
+
+        public List<Blog> GetLastThreeBlog()
+        {
+            return _blogDal.GetAll().Take(3).ToList();
         }
 
         public List<Blog> GetAllWithCategory()
@@ -43,19 +48,23 @@ namespace BusinessLayer.Concrete
             return _blogDal.GetById(id);
         }
 
+        public void Update(Blog entity)
+        {
+            _blogDal.Update(entity);
+        }
         public List<Blog> GetBlogById(int id)
         {
             return _blogDal.GetAllWithFilter(b => b.BlogId == id);
         }
 
-        public void Update(Blog blog)
-        {
-            _blogDal.Update(blog);
-        }
-
         public List<Blog> GetAllByWriter(int id)
         {
             return _blogDal.GetAllWithFilter(b => b.WriterID == id);
+        }
+
+        public List<Blog> GetAllWithCategoryByWriter(int id)
+        {
+            return _blogDal.GetAllWithCategoryByWriter(id);
         }
     }
 }
