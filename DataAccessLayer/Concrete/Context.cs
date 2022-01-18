@@ -12,8 +12,24 @@ namespace DataAccessLayer.Concrete
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server= DESKTOP-43POORI\LOCALHOST; Database= BlogDb; integrated security = true;");
+            optionsBuilder.UseSqlServer(@"Server= DESKTOP-KONDR6V\SQLEXPRESS; Database= BlogDb; integrated security = true;");
         }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Message2>()
+                .HasOne(message => message.SenderUser)
+                .WithMany(writer => writer.WriterSender)
+                .HasForeignKey(message => message.SenderId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+
+            modelBuilder.Entity<Message2>()
+                .HasOne(message => message.RecieverUser)
+                .WithMany(writer => writer.WriterReciever)
+                .HasForeignKey(writer => writer.ReceiverId)
+                .OnDelete(DeleteBehavior.ClientSetNull);
+        }
+
         public DbSet<About> Abouts { get; set; }
         public DbSet<Blog> Blogs { get; set; }
         public DbSet<Category> Categories { get; set; }
@@ -22,5 +38,9 @@ namespace DataAccessLayer.Concrete
         public DbSet<Writer> Writers { get; set; }
         public DbSet<NewsLetter> NewsLetters { get; set; }
         public DbSet<BlogRayting> BlogRaytings { get; set; }
+        public DbSet<Notification> Notifications { get; set; }
+        public DbSet<Message> Messages { get; set; }
+        public DbSet<Message2> Message2s { get; set; }
+        public DbSet<Admin> Admins { get; set; }
     }
 }
