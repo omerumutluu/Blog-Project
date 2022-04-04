@@ -10,7 +10,7 @@ namespace BlogApi.DataAccessLayer
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server= DESKTOP-KONDR6V\SQLEXPRESS; Database= BlogApiDb; integrated security = true;");
+            optionsBuilder.UseSqlServer(@"Server= ASUS\SQLEXPRESS; Database= BlogApiDb; integrated security = true;");
         }
         public DbSet<Employee> Employees { get; set; }
     }

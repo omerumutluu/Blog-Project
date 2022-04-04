@@ -1,4 +1,5 @@
 ﻿using EntityLayer.Concrete;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,11 +9,11 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer.Concrete
 {
-    public class Context : DbContext
+    public class Context : IdentityDbContext<AppUser>
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server= DESKTOP-KONDR6V\SQLEXPRESS; Database= BlogDb; integrated security = true;");
+            optionsBuilder.UseSqlServer(@"Server= ASUS\SQLEXPRESS; Database= BlogDb; integrated security = true;");
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -28,6 +29,8 @@ namespace DataAccessLayer.Concrete
                 .WithMany(writer => writer.WriterReciever)
                 .HasForeignKey(writer => writer.ReceiverId)
                 .OnDelete(DeleteBehavior.ClientSetNull);
+
+            base.OnModelCreating(modelBuilder);
         }
 
         public DbSet<About> Abouts { get; set; }
